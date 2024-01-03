@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nest-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-nestjs-app
+  template:
+    metadata:
+      labels:
+        app: my-nestjs-app
+    spec:
+      containers:
+      - name: my-k8s-demo-container
+        image: thinhddo/nestjs-k8s-demo:latest
+        ports:
+        - containerPort: 3000
