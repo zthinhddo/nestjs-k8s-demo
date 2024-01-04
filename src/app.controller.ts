@@ -9,4 +9,15 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get('/say-something')
+  saySomething(): string {
+    return this.appService.saySomething();
+  }
+
+  @Get('/get-data')
+  async getData(): Promise<any> {
+    const data = await this.appService.getData();
+    return data;
+  }
 }

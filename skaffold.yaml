@@ -1,0 +1,15 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: nestjs-k-s-demo
+build:
+  artifacts:
+    - image: thinhddo/nestjs-k8s-demo
+      docker:
+        dockerfile: Dockerfile
+  tagPolicy:
+    sha256: {}
+manifests:
+  rawYaml:
+    - k8s/my-k8s-deployment.yaml
+    - k8s/my-k8s-service.yaml

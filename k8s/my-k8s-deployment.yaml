@@ -15,5 +15,6 @@ spec:
       containers:
       - name: my-k8s-demo-container
         image: thinhddo/nestjs-k8s-demo:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 3000

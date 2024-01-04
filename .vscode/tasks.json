@@ -1,0 +1,26 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "bridge-to-kubernetes.resource",
+			"type": "bridge-to-kubernetes.resource",
+			"resource": "my-nest-app-deployment-57d994f5fd",
+			"resourceType": "pod",
+			"ports": [
+				50
+			],
+			"targetCluster": "gke_chrome-lambda-404303_asia-southeast2_thinhdd-pilot",
+			"targetNamespace": "default",
+			"useKubernetesServiceEnvironmentVariables": false,
+			"targetContainer": "my-k8s-demo-container"
+		},
+		{
+			"label": "bridge-to-kubernetes.compound",
+			"dependsOn": [
+				"bridge-to-kubernetes.resource",
+				"tsc: build - tsconfig.json"
+			],
+			"dependsOrder": "sequence"
+		}
+	]
+}

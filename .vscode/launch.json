@@ -1,0 +1,56 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Kubernetes: Run/Debug",
+      "type": "cloudcode.kubernetes",
+      "request": "launch",
+      "skaffoldConfig": "${workspaceFolder}\\skaffold.yaml",
+      "imageRegistry": "gcr.io/chrome-lambda-404303",
+      "watch": true,
+      "cleanUp": false,
+      "portForward": true,
+      "debug": [
+        {
+          "image": "thinhddo/nestjs-k8s-demo",
+          "containerName": "my-k8s-demo-container",
+          "sourceFileMap": {
+            "${workspaceFolder}": "/app"
+          }
+        }
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program with Kubernetes",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}\\src\\app.controller.ts",
+      "preLaunchTask": "bridge-to-kubernetes.compound",
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ],
+      "env": {
+        "GRPC_DNS_RESOLVER": "native"
+      }
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}\\src\\app.controller.ts",
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ]
+    }
+  ]
+}
